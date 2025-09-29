@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/0/fe1d68ca5e5e4f15a0ad0876acfda73a/artifacts
+end_time: 1756233536925
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fe1d68ca5e5e4f15a0ad0876acfda73a
+run_name: shivering-yak-945
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756233425380
+status: 3
+tags: []
+user_id: R.C

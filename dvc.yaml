@@ -1,0 +1,31 @@
+stages:
+  Data_ingestion:
+    cmd: python SRC/Data_ingestion.py
+    deps:
+    - SRC/Data_ingestion.py
+    outs:
+    - Data/raw
+  Data_preprocessing:
+    cmd: python SRC/Data_preprocessing.py
+    deps:
+    - Data/raw
+    - SRC/Data_preprocessing.py
+    outs:
+    - Data/processed
+  Model_building:
+    cmd: python SRC/Model_building.py
+    deps:
+    - Data/processed
+    - SRC/Model_building.py
+    outs:
+    - model/mnist_ann_model.h5
+  Model_evaluation:
+    cmd: python SRC/Model_evaluation.py
+    deps:
+    - SRC/Model_evaluation.py
+    - Data/processed/X_test.npy
+    - Data/processed/y_test.npy
+    - model/mnist_ann_model.h5
+    outs:
+    - reports/evaluation_reports.txt
+

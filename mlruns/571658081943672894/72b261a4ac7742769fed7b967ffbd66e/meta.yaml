@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/571658081943672894/72b261a4ac7742769fed7b967ffbd66e/artifacts
+end_time: 1756210056259
+entry_point_name: ''
+experiment_id: '571658081943672894'
+lifecycle_stage: active
+run_id: 72b261a4ac7742769fed7b967ffbd66e
+run_name: unequaled-bug-618
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756210053529
+status: 4
+tags: []
+user_id: R.C

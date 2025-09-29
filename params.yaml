@@ -1,0 +1,17 @@
+Data_ingestion:
+  Raw_Data_Path: "./Data"
+data_preprocessing:
+  raw_data_path: "./Data/raw"
+  processed_data_path: "./Data/processed"
+  normalization_factor: 255.0
+model_building:
+  process_data_path: "./Data/processed"
+  model_save_path: "./model"
+  input_shape: [28,28]
+  num_classes: 10
+  epochs: 10
+  validation_split: 0.2
+model_evaluation:
+  processed_path: "./Data/processed"
+  model_path: "./model/mnist_ann_model.h5"
+  results_path: "./reports"

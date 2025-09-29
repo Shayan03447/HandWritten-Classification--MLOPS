@@ -1,0 +1,74 @@
+schema: '2.0'
+stages:
+  Data_ingestion:
+    cmd: python SRC/Data_ingestion.py
+    deps:
+    - path: SRC/Data_ingestion.py
+      hash: md5
+      md5: 834d2e41e539b9701c7f3e7bf51a87fe
+      size: 2723
+    outs:
+    - path: Data/raw
+      hash: md5
+      md5: 3c1782ef38908bbff614dd1ce320c301.dir
+      size: 54950512
+      nfiles: 4
+  Data_preprocessing:
+    cmd: python SRC/Data_preprocessing.py
+    deps:
+    - path: Data/raw
+      hash: md5
+      md5: 3c1782ef38908bbff614dd1ce320c301.dir
+      size: 54950512
+      nfiles: 4
+    - path: SRC/Data_preprocessing.py
+      hash: md5
+      md5: 4ce136eab02e4037a8d9ecaa7a1d85d7
+      size: 3456
+    outs:
+    - path: Data/processed
+      hash: md5
+      md5: 9f2e412d006b92a021623e9467ac1338.dir
+      size: 219590512
+      nfiles: 4
+  Model_building:
+    cmd: python SRC/Model_building.py
+    deps:
+    - path: Data/processed
+      hash: md5
+      md5: 9f2e412d006b92a021623e9467ac1338.dir
+      size: 219590512
+      nfiles: 4
+    - path: SRC/Model_building.py
+      hash: md5
+      md5: 843b1d6f393f029e02e2e0da9c1723b5
+      size: 5364
+    outs:
+    - path: model/mnist_ann_model.h5
+      hash: md5
+      md5: 4b83cdbaab215c900a4b00d72fb7f8e9
+      size: 1344536
+  Model_evaluation:
+    cmd: python SRC/Model_evaluation.py
+    deps:
+    - path: Data/processed/X_test.npy
+      hash: md5
+      md5: 1cebcf6b26fb1966830ff84f1bcd826a
+      size: 31360128
+    - path: Data/processed/y_test.npy
+      hash: md5
+      md5: 3deb6f9de60479b947785b62051694b8
+      size: 10128
+    - path: SRC/Model_evaluation.py
+      hash: md5
+      md5: ee6bbdcce2ab83ad0bf658a9203ff004
+      size: 5247
+    - path: model/mnist_ann_model.h5
+      hash: md5
+      md5: 4b83cdbaab215c900a4b00d72fb7f8e9
+      size: 1344536
+    outs:
+    - path: reports/evaluation_reports.txt
+      hash: md5
+      md5: f3d13f61f8ef9751559680ca8b32031d
+      size: 1380

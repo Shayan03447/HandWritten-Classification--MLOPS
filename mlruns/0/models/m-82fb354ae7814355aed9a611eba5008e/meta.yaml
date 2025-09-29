@@ -1,0 +1,10 @@
+artifact_location: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/0/models/m-82fb354ae7814355aed9a611eba5008e/artifacts
+creation_timestamp: 1756233516790
+experiment_id: '0'
+last_updated_timestamp: 1756233536902
+model_id: m-82fb354ae7814355aed9a611eba5008e
+model_type: null
+name: model
+source_run_id: fe1d68ca5e5e4f15a0ad0876acfda73a
+status: 2
+status_message: null

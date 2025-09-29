@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/571658081943672894/b99aa0b22be243eeb4443379b6613074/artifacts
+end_time: 1756234346259
+entry_point_name: ''
+experiment_id: '571658081943672894'
+lifecycle_stage: active
+run_id: b99aa0b22be243eeb4443379b6613074
+run_name: illustrious-wren-331
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756234312364
+status: 3
+tags: []
+user_id: R.C

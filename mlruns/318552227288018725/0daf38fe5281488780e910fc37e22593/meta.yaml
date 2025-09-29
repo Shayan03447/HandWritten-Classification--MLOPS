@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/318552227288018725/0daf38fe5281488780e910fc37e22593/artifacts
+end_time: 1756209787651
+entry_point_name: ''
+experiment_id: '318552227288018725'
+lifecycle_stage: active
+run_id: 0daf38fe5281488780e910fc37e22593
+run_name: merciful-penguin-529
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756209787523
+status: 4
+tags: []
+user_id: R.C

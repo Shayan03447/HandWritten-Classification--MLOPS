@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/571658081943672894/fd092db1bfba435da322cb740e1df77c/artifacts
+end_time: 1756233574837
+entry_point_name: ''
+experiment_id: '571658081943672894'
+lifecycle_stage: active
+run_id: fd092db1bfba435da322cb740e1df77c
+run_name: hilarious-pig-377
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756233556775
+status: 3
+tags: []
+user_id: R.C

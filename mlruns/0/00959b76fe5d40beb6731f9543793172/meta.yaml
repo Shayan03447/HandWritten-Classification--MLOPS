@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/0/00959b76fe5d40beb6731f9543793172/artifacts
+end_time: 1756208320583
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 00959b76fe5d40beb6731f9543793172
+run_name: spiffy-croc-4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756208179231
+status: 3
+tags: []
+user_id: R.C

@@ -2,13 +2,14 @@ import logging
 import os
 from tensorflow.keras.datasets import mnist
 import numpy as np
+import yaml
 
 log_dir='log'
 os.makedirs(log_dir, exist_ok=True)
 
 # Configuration
 logger=logging.getLogger('Data_ingestion')
-logger.setLevel('DEBUG')
+logger.setLevel("DEBUG")
 
 console_handlar= logging.StreamHandler()
 console_handlar.setLevel('DEBUG')
@@ -23,6 +24,23 @@ file_handler.setFormatter(formatter)
 
 logger.addHandler(console_handlar)
 logger.addHandler(file_handler)
+
+def load_params(params_path: str) -> dict:
+    """Load parameters form the yaml file"""
+    try:
+        with open(params_path, 'r') as file:
+            params=yaml.safe_load(file)
+        logger.debug("Parameter retrived from %s", params_path)
+        return params
+    except FileNotFoundError:
+        logger.error('File not found: %s', params_path)
+        raise
+    except yaml.YAMLError as e:
+        logger.error('YAML error: %s', e)
+        raise
+    except Exception as e:
+        logger.error('Unexpected error: %s', e)
+        raise
 
 
 def load_data() -> tuple:
@@ -53,8 +71,9 @@ def save_data(X_train,y_train,X_test,y_test, data_path: str) -> None:
 
 def main():
     try:
+        params=load_params(params_path='params.yaml')
         (X_train,y_train),(X_test,y_test)=load_data()
-        save_data(X_train,y_train,X_test,y_test,data_path="./Data")
+        save_data(X_train,y_train,X_test,y_test,data_path= params['Data_ingestion']['Raw_Data_Path'])
     except Exception as e:
         logger.error('Data ingestion pipeline failed: %s',e)
         print(f"Error: {e}")

@@ -3,6 +3,9 @@ import logging
 import numpy as np
 from tensorflow.keras.models import load_model
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+import yaml
+import mlflow
+import mlflow.tensorflow
 
 
 log_dir='log'
@@ -12,7 +15,7 @@ logger=logging.getLogger("Model_evaluation")
 logger.setLevel("DEBUG")
 
 console_handler=logging.StreamHandler()
-console_handler.setLevel("DEBUG")
+console_handler.setLevel('DEBUG')
 
 log_file_path=os.path.join(log_dir, "Model_evaluation.log")
 file_handler=logging.FileHandler(log_file_path)
@@ -24,6 +27,24 @@ file_handler.setFormatter(formatter)
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
+
+def load_params(params_path: str) -> dict:
+    """Load parameter from the yaml file"""
+    try:
+        with open(params_path, 'r') as file:
+            params=yaml.safe_load(file)
+        logger.debug("parameters retrived from :%s", params_path)
+        return params
+    except FileNotFoundError:
+        logger.error('File not found: %s', params_path)
+        raise
+    except yaml.YAMLError as e:
+        logger.error('YAML error: %s', e)
+        raise
+    except Exception as e:
+        logger.error('Unexpected error: %s', e)
+        raise
+
 
 def load_processed_data(processed_path):
     """Load processed test data """
@@ -64,7 +85,7 @@ def save_evaluation_results(acc, cm, report, results_path):
     """Save evaluation metrics to a text file"""
     try:
         os.makedirs(results_path, exist_ok=True)
-        results_file = os.path.join(results_path, "evaluation_results.txt")
+        results_file = os.path.join(results_path, "evaluation_reports.txt")
 
         with open(results_file, "w") as f:
             f.write(f"Accuracy: {acc:.4f}\n\n")
@@ -80,9 +101,11 @@ def save_evaluation_results(acc, cm, report, results_path):
 def main():
     try:
         # Parameters 
-        processed_path = "./data/processed"
-        model_path = "./model/mnist_ann_model.h5"
-        results_path = "./results"
+        params=load_params(params_path='params.yaml')
+        processed_path =params["model_evaluation"]["processed_path"]
+
+        model_path =params["model_evaluation"]["model_path"]
+        results_path =params["model_evaluation"]["results_path"]
 
         # Load data & model
         X_test, y_test = load_processed_data(processed_path)
@@ -94,7 +117,29 @@ def main():
         # Save evaluation results
         save_evaluation_results(acc, cm, report, results_path)
 
-        logger.info("Model evaluation pipeline completed successfully ✅")
+        # MLflow logging
+        mlflow.set_experiment("MNIST-CLASSIFICATION")
+        with mlflow.start_run():
+            mlflow.log_metric("accuracy",acc)
+            # confusion matrix plot
+            import matplotlib.pyplot as plt
+            import seaborn as sns
+            plt.figure(figsize=(8,6))
+            sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+            plt.title("Confusion metrixs")
+            cm_path=os.path.join(results_path, "confusion_matrix.png")
+            plt.savefig(cm_path)
+            plt.close()
+            mlflow.log_artifact(cm_path)
+            # classification_report
+            report_file= os.path.join(results_path, "classification_report.txt")
+            with open(report_file, "w") as f:
+                f.write(report)
+            mlflow.log_artifact(report_file)
+            # trained model
+            mlflow.tensorflow.log_model(model, artifact_path="model")
+
+        logger.info("Model evaluation pipeline completed successfully")
 
     except Exception as e:
         logger.error("Model evaluation pipeline failed: %s", e)

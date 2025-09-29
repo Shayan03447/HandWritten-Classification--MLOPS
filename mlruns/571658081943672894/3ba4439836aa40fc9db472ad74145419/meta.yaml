@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/571658081943672894/3ba4439836aa40fc9db472ad74145419/artifacts
+end_time: 1756211112392
+entry_point_name: ''
+experiment_id: '571658081943672894'
+lifecycle_stage: active
+run_id: 3ba4439836aa40fc9db472ad74145419
+run_name: whimsical-stork-536
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756211094499
+status: 3
+tags: []
+user_id: R.C

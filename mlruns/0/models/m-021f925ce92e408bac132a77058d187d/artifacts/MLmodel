@@ -1,0 +1,20 @@
+artifact_path: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/0/models/m-021f925ce92e408bac132a77058d187d/artifacts
+flavors:
+  keras:
+    data: data
+    keras_backend: tensorflow
+    keras_version: 3.11.2
+    save_exported_model: false
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.keras
+    python_version: 3.12.11
+mlflow_version: 3.3.1
+model_id: m-021f925ce92e408bac132a77058d187d
+model_size_bytes: 1339825
+model_uuid: m-021f925ce92e408bac132a77058d187d
+prompts: null
+run_id: 00959b76fe5d40beb6731f9543793172
+utc_time_created: '2025-08-26 11:38:10.771842'

@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/MLOps-Series/MNIST-Classification--MLOPS/mlruns/571658081943672894/6649d55b112e48f6bb9b722ef26f12e9/artifacts
+end_time: 1756211041938
+entry_point_name: ''
+experiment_id: '571658081943672894'
+lifecycle_stage: active
+run_id: 6649d55b112e48f6bb9b722ef26f12e9
+run_name: languid-boar-62
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756211039761
+status: 4
+tags: []
+user_id: R.C
